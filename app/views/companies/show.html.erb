@@ -11,7 +11,9 @@
   <div class="bg-success">
     <div class="container p-5 text-white">
       <h1><%= @company.name %></h1>
-      <h3>City, State</h3>
+      <% zipcode = Zipcode.find_by_code @company.zip_code %>
+      <h3><%= zipcode.city %></h3>
+      <h3><%= zipcode.state.abbr %></h3>
       <pre>☝️ This is what needs to be udpated. Examples: Atlanta, GA or Nashvile, TN</pre>
     </div>
   </div>

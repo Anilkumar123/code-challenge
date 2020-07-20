@@ -58,4 +58,13 @@ class CompaniesControllerTest < ApplicationSystemTestCase
     assert_equal "28173", last_company.zip_code
   end
 
+  test "Delete" do
+
+    company = Company.last
+    visit company_path(company.id)
+    expect { click_link "Delete" }.to change(Company, :count).by(-1)
+
+    assert_text "Successfully deleted Company"
+  end
+
 end

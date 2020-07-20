@@ -30,7 +30,17 @@ class CompaniesController < ApplicationController
     else
       render :edit
     end
-  end  
+  end
+
+  def delete
+    @company = Company.find(params[:id])
+    if @company.present?
+      @company.destroy # using destroy instead delete because of destroy deletes dependent records.
+      redirect_to companies_path, notice: "Successfully deleted Company"
+    else
+      redirect_back(fallback_location: root_path)
+    end
+  end
 
   private
 
